@@ -1,6 +1,7 @@
 import pathlib
 import os
 from config import MAX_CHARS
+from google.genai import types
 
 def get_file_content(working_directory, file_path):
     abs_file_path = os.path.abspath(file_path)
@@ -14,6 +15,19 @@ def get_file_content(working_directory, file_path):
         if os.path.getsize(abs_file_path) > MAX_CHARS:
             file_content += f'[...File "{file_path}" truncated at 10000 characters]'
         return file_content
-    
-        
-print(get_file_content(os.getcwd(), 'file.txt')) 
+
+
+schema_get_files_content = types.FunctionDeclaration(
+    name="get_files_content",
+    description="get the content of the files in the specified directory to a maximum of 10000 characters. Constrained to the working directory.",
+    parameters=types.Schema(
+        type=types.Type.OBJECT,
+        properties={
+            "file_path": types.Schema(
+                type=types.Type.STRING,
+                description="The file_path of the file that needs to be read.",
+            ),
+        },
+        required=["file_path"],
+    ),
+) 
