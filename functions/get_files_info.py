@@ -1,7 +1,6 @@
 import os
 from google.genai import types
 
-
 def get_files_info(working_directory, directory="."):
     abs_working_dir = os.path.abspath(working_directory)
     target_dir = os.path.abspath(os.path.join(working_directory, directory))

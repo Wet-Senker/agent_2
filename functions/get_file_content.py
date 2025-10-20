@@ -16,7 +16,6 @@ def get_file_content(working_directory, file_path):
             file_content += f'[...File "{file_path}" truncated at 10000 characters]'
         return file_content
 
-
 schema_get_file_content = types.FunctionDeclaration(
     name="get_file_content",
     description="get the content of the files in the specified directory to a maximum of 10000 characters. Constrained to the working directory.",
